@@ -21,3 +21,25 @@ function transform(/* arr */) {
 module.exports = {
   transform
 };
+
+function transform(arr) {
+
+	let preres = arr.slice();
+	let result = [];
+
+	for(let i=0; i<preres.length; i++) {
+		if(preres[i] === '--discard-next') {			
+			preres = preres.splice(i+1, 1);
+		} else if(preres[i] === '--discard-prev') {			
+			result.shift();
+		} else if(preres[i] === '--double-next') {
+			result.push(preres[i+1], preres[i+1]);
+			preres = preres.splice(i+1, 1);			
+		} else if(preres[i] === '--double-next') {
+			result.push(preres[i-1]);					
+		}	else {
+			result.push(preres[i]);
+		}					
+	}		
+	return result	
+}
