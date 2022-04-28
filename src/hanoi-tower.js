@@ -22,3 +22,14 @@ function calculateHanoi(/* disksNumber, turnsSpeed */) {
 module.exports = {
   calculateHanoi
 };
+
+
+function calculateHanoi(x, y) {
+
+	let result = {};
+	
+	result.turns = 2**x - 1;
+	result.seconds = Math.floor(result.turns / (y / 3600));
+
+	return result
+}
