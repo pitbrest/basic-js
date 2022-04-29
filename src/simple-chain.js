@@ -18,13 +18,17 @@ const { NotImplementedError } = require('../extensions/index.js');
 		return this;
 	},
 	removeLink(position) {
-		if(!this.chain.includes('position')) {
-			this.chain.splice(position-1, 1);
-		} else {
-			throw new Error("You can't remove incorrect link!");
+		if(position <= 0 || typeof position === 'string' || !this.chain[position-1]) {
+			this.chain = [];
+			throw new Error('You can\'t remove incorrect link!');
 		}
-		
-		return this;
+		if (this.chain[position-1]) {
+			this.chain.splice(position-1, 1);
+			return this;
+		} else {
+			this.chain = [];
+			throw new Error('You can\'t remove incorrect link!');
+		}					
 	},
 	reverseChain() {
 		this.chain.reverse();
