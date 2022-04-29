@@ -33,23 +33,26 @@ function transform(arr) {
 	for (let i = 0; i < preres.length; i++) {
 		if (preres[i] === '--discard-next') {
 			if (preres[i + 1]) {
-				preres = preres.splice(i + 1, 1);
+				preres.splice(i + 1, 1);
 			}
+			console.log(result);
 		} else if (preres[i] === '--discard-prev') {
-			if (result.length > 0 && arr[i - 2] !== '--discard-next' && arr[i - 2] !== '--double-next') {
-				result.shift();
+			if (result.length > 0 && preres[i - 1] !== '--discard-next') {
+				result.splice(i - 1, 1)
 			}
+			console.log(result);
 		} else if (preres[i] === '--double-next') {
 			if (preres[i + 1]) {
-				result.push(preres[i + 1], preres[i + 1]);
-				preres = preres.splice(i + 1, 1);
+				result.push(preres[i + 1]);
 			}
 		} else if (preres[i] === '--double-prev') {
-			if (result.length > 0 && arr[i - 2] !== '--discard-next' && arr[i - 2] !== '--double-next') {
+			if (result.length > 0 && preres[i - 1] !== '--discard-next') {
 				result.push(preres[i - 1]);
 			}
+			console.log(result);
 		} else {
 			result.push(preres[i]);
+			console.log(result);
 		}
 	}
 	return result
