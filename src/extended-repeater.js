@@ -25,10 +25,17 @@ module.exports = {
 };
 
 function repeater(str, options) {
-	
+	if(str && typeof str !== 'string' || str === null) {
+		str = String(str);
+	}
+	if(options.addition === false || options.addition === null || options.addition && typeof options.addition !== 'string') {
+		options.addition = String(options.addition);
+	}	
+
 	let arr = [];
+
 	if(options.repeatTimes && options.separator && options.addition && options.additionRepeatTimes && options.additionSeparator) {
-	
+		
 		let supArr = [];
 		for(let i=0; i<options.additionRepeatTimes; i++) {
 			supArr.push(options.addition);			
