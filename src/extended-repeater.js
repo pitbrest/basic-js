@@ -23,3 +23,36 @@ function repeater(/* str, options */) {
 module.exports = {
   repeater
 };
+
+function repeater(str, options) {
+	let arr = [];
+	
+	if(options.separator && options.additionSeparator && options.addition && !options.repeatTimes) {
+		return str + options.addition;
+	}
+	if(options.repeatTimes && options.separator && options.addition) {
+		for(let i=0; i<options.repeatTimes; i++) {
+			arr.push(str + options.addition);			
+		}
+		return arr.join(options.separator);
+	}
+	if(options.repeatTimes && options.separator) {
+		for(let i=0; i<options.repeatTimes; i++) {
+			arr.push(str);			
+		}
+		return arr.join(options.separator);
+	}
+	if(options.repeatTimes && options.addition) {
+		for(let i=0; i<options.repeatTimes; i++) {
+			arr.push(str + options.addition);			
+		}
+		return arr.join('+');
+	}
+	if(options.repeatTimes) {
+		for(let i=0; i<options.repeatTimes; i++) {
+			arr.push(str);
+		}
+		return arr.join('+');
+	}	
+}
+
