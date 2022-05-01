@@ -45,6 +45,41 @@ function repeater(str, options) {
 		}
 		return arr.join(options.separator);
 	}
+
+// repeatTimes: 2, separator: '222', addition: 'ADDITION', additionRepeatTimes: 3 
+	if(options.repeatTimes  && options.separator && options.addition && options.additionRepeatTimes && !options.additionSeparator) {
+		
+		let supArr = [];
+		for(let i=0; i<options.additionRepeatTimes; i++) {
+			supArr.push(options.addition);			
+		}
+		for(let i=0; i<options.repeatTimes; i++) {
+			arr.push(str + supArr.join('|'));			
+		}
+		return arr.join(options.separator);		
+	}
+	if(options.repeatTimes && options.addition && options.additionRepeatTimes && options.additionSeparator && !options.separator) {
+		
+		let supArr = [];
+		for(let i=0; i<options.additionRepeatTimes; i++) {
+			supArr.push(options.addition);			
+		}
+		for(let i=0; i<options.repeatTimes; i++) {
+			arr.push(str + supArr.join(options.additionSeparator));			
+		}
+		return arr.join('+');		
+	}
+	if(options.repeatTimes && options.addition && options.additionRepeatTimes && !options.additionSeparator ) {
+		
+		let supArr = [];
+		for(let i=0; i<options.additionRepeatTimes; i++) {
+			supArr.push(options.addition);			
+		}
+		for(let i=0; i<options.repeatTimes; i++) {
+			arr.push(str + supArr.join('|'));			
+		}
+		return arr.join('+');		
+	}
 	if(options.separator && options.additionSeparator && options.addition && !options.repeatTimes) {
 		return str + options.addition;
 	}
@@ -54,6 +89,7 @@ function repeater(str, options) {
 		}
 		return arr.join(options.separator);
 	}
+
 	if(options.repeatTimes && options.separator) {
 		for(let i=0; i<options.repeatTimes; i++) {
 			arr.push(str);			
@@ -73,5 +109,4 @@ function repeater(str, options) {
 		return arr.join('+');
 	}	
 }
-
 
