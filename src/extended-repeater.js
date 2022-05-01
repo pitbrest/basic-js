@@ -25,8 +25,10 @@ module.exports = {
 };
 
 function repeater(str, options) {
+	
 	let arr = [];
 	if(options.repeatTimes && options.separator && options.addition && options.additionRepeatTimes && options.additionSeparator) {
+	
 		let supArr = [];
 		for(let i=0; i<options.additionRepeatTimes; i++) {
 			supArr.push(options.addition);			
